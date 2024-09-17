@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+
+    public AudioSource audioPlayer;
     private float horizontal;
     private float speed = 150f;
     private float jumpingPower = 150f;
@@ -47,5 +49,14 @@ public class Movement : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Obstacle")
+        {
+            audioPlayer.Play();
+        }
+        
     }
 }
